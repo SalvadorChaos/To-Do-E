@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/task_data.dart';
+import 'tasks_screen.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Function addTaskCallback;
@@ -25,7 +26,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         bottom: 30.0,
       ),
       decoration: BoxDecoration(
-        color: Colors.greenAccent,
+        color: TasksScreen.isSwitched ? Colors.black : Colors.greenAccent,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
           topRight: Radius.circular(20.0),
@@ -37,7 +38,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             Text(
               'Add a Task',
               style: TextStyle(
-                color: Colors.black,
+                color:
+                    TasksScreen.isSwitched ? Colors.greenAccent : Colors.black,
                 fontSize: 30.0,
                 fontWeight: FontWeight.w600,
               ),
@@ -45,7 +47,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              cursorColor: TasksScreen.isSwitched ? Colors.green : Colors.black,
               style: TextStyle(
+                color:
+                    TasksScreen.isSwitched ? Colors.greenAccent : Colors.black,
                 fontSize: 20.0,
               ),
               decoration: InputDecoration(
@@ -61,11 +66,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               height: 60.0,
               width: double.infinity,
               child: FlatButton(
-                color: Colors.black,
+                color:
+                    TasksScreen.isSwitched ? Colors.greenAccent : Colors.black,
                 child: Text(
                   'Add',
                   style: TextStyle(
-                    color: Colors.greenAccent,
+                    color: TasksScreen.isSwitched
+                        ? Colors.black
+                        : Colors.greenAccent,
                     fontSize: 21.0,
                   ),
                 ),

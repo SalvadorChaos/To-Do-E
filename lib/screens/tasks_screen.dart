@@ -3,13 +3,33 @@ import 'package:provider/provider.dart';
 
 import '../models/task_data.dart';
 import '../widgets/tasks_list.dart';
+import '../widgets/theme_switch.dart';
 import 'add_task_screen.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  static bool isSwitched = false;
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  Color lightThemeColor = Colors.greenAccent;
+  Color darkThemeColor = Colors.black;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0.0),
+        child: AppBar(
+          backgroundColor: darkThemeColor,
+          brightness:
+              TasksScreen.isSwitched ? Brightness.light : Brightness.dark,
+          elevation: 0.0,
+        ),
+      ),
+      backgroundColor: darkThemeColor,
+      extendBodyBehindAppBar: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -23,22 +43,42 @@ class TasksScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                CircleAvatar(
-                  child: Icon(
-                    Icons.list,
-                    color: Colors.greenAccent,
-                    size: 30.0,
-                  ),
-                  backgroundColor: Colors.black,
-                  radius: 30.0,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    CircleAvatar(
+                      child: Icon(
+                        Icons.list,
+                        color: darkThemeColor,
+                        size: 30.0,
+                      ),
+                      backgroundColor: lightThemeColor,
+                      radius: 30.0,
+                    ),
+                    ThemeSwitch(
+                      onChanged: (value) {
+                        setState(() {
+                          TasksScreen.isSwitched = !TasksScreen.isSwitched;
+                          if (TasksScreen.isSwitched == true) {
+                            darkThemeColor = Colors.greenAccent;
+                            lightThemeColor = Colors.black;
+                          } else {
+                            darkThemeColor = Colors.black;
+                            lightThemeColor = Colors.greenAccent;
+                          }
+                          print(TasksScreen.isSwitched);
+                        });
+                      },
+                    ),
+                  ],
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 21.0,
                 ),
                 Text(
                   'Todoey',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: lightThemeColor,
                     fontSize: 50.0,
                     fontWeight: FontWeight.w700,
                   ),
@@ -46,7 +86,7 @@ class TasksScreen extends StatelessWidget {
                 Text(
                   '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: lightThemeColor,
                     fontSize: 21.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -60,7 +100,7 @@ class TasksScreen extends StatelessWidget {
                 horizontal: 20.0,
               ),
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: lightThemeColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
                   topRight: Radius.circular(20.0),
@@ -72,10 +112,10 @@ class TasksScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: darkThemeColor,
         child: Icon(
           Icons.add,
-          color: Colors.black,
+          color: lightThemeColor,
         ),
         onPressed: () {
           showModalBottomSheet(

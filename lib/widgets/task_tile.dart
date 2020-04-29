@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/tasks_screen.dart';
+
 class TaskTile extends StatelessWidget {
   TaskTile({
     @required this.taskTitle,
@@ -20,7 +22,7 @@ class TaskTile extends StatelessWidget {
       title: Text(
         taskTitle,
         style: TextStyle(
-          color: Colors.greenAccent,
+          color: TasksScreen.isSwitched ? Colors.greenAccent : Colors.black,
           fontSize: 18.0,
           fontWeight: FontWeight.w500,
           decoration: isChecked ? TextDecoration.lineThrough : null,
@@ -28,12 +30,15 @@ class TaskTile extends StatelessWidget {
       ),
       trailing: Theme(
         data: Theme.of(context).copyWith(
-          unselectedWidgetColor: Colors.green,
+          unselectedWidgetColor:
+              TasksScreen.isSwitched ? Colors.green : Colors.black,
         ),
         child: Checkbox(
           value: isChecked,
-          activeColor: Colors.greenAccent,
-          checkColor: Colors.black,
+          activeColor:
+              TasksScreen.isSwitched ? Colors.greenAccent : Colors.black,
+          checkColor:
+              TasksScreen.isSwitched ? Colors.black : Colors.greenAccent,
           onChanged: checkboxCallback,
         ),
       ),
