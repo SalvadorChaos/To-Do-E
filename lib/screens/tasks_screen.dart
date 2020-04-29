@@ -76,7 +76,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   height: 21.0,
                 ),
                 Text(
-                  'Todoey',
+                  'ToDo-E',
                   style: TextStyle(
                     color: lightThemeColor,
                     fontSize: 50.0,
@@ -84,7 +84,10 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).taskCount} Tasks',
+                  '${Provider.of<TaskData>(context).completedTaskCount}'
+                  ' of '
+                  '${Provider.of<TaskData>(context).taskCount}'
+                  ' Tasks completed',
                   style: TextStyle(
                     color: lightThemeColor,
                     fontSize: 21.0,

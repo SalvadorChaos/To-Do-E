@@ -11,7 +11,7 @@ class TaskData extends ChangeNotifier {
     Task(name: 'Buy Eggs'),
   ];
 
-  int completedTasks = 0;
+  int completedTaskCount = 0;
 
   UnmodifiableListView<Task> get taskList {
     return UnmodifiableListView(_taskList);
@@ -29,6 +29,13 @@ class TaskData extends ChangeNotifier {
 
   void updateTask(Task task) {
     task.toggleDone();
+    if (task.isDone == true) {
+      completedTaskCount++;
+    } else if (task.isDone == false) {
+      completedTaskCount--;
+    } else {
+      print(task.isDone);
+    }
     notifyListeners();
   }
 
