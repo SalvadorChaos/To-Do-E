@@ -13,8 +13,8 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  Color lightThemeColor = Colors.greenAccent;
-  Color darkThemeColor = Colors.black;
+  Color themeColor1 = Colors.greenAccent;
+  Color themeColor2 = Colors.black;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class _TasksScreenState extends State<TasksScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(0.0),
         child: AppBar(
-          backgroundColor: darkThemeColor,
+          backgroundColor: themeColor2,
           brightness:
               TasksScreen.isSwitched ? Brightness.light : Brightness.dark,
           elevation: 0.0,
         ),
       ),
-      backgroundColor: darkThemeColor,
+      backgroundColor: themeColor2,
       extendBodyBehindAppBar: true,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,10 +49,10 @@ class _TasksScreenState extends State<TasksScreen> {
                     CircleAvatar(
                       child: Icon(
                         Icons.list,
-                        color: darkThemeColor,
+                        color: themeColor2,
                         size: 30.0,
                       ),
-                      backgroundColor: lightThemeColor,
+                      backgroundColor: themeColor1,
                       radius: 30.0,
                     ),
                     ThemeSwitch(
@@ -60,11 +60,11 @@ class _TasksScreenState extends State<TasksScreen> {
                         setState(() {
                           TasksScreen.isSwitched = !TasksScreen.isSwitched;
                           if (TasksScreen.isSwitched == true) {
-                            darkThemeColor = Colors.greenAccent;
-                            lightThemeColor = Colors.black;
+                            themeColor2 = Colors.greenAccent;
+                            themeColor1 = Colors.black;
                           } else {
-                            darkThemeColor = Colors.black;
-                            lightThemeColor = Colors.greenAccent;
+                            themeColor2 = Colors.black;
+                            themeColor1 = Colors.greenAccent;
                           }
                           print(TasksScreen.isSwitched);
                         });
@@ -78,7 +78,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 Text(
                   'ToDo-E',
                   style: TextStyle(
-                    color: lightThemeColor,
+                    color: themeColor1,
                     fontSize: 50.0,
                     fontWeight: FontWeight.w700,
                   ),
@@ -89,7 +89,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   '${Provider.of<TaskData>(context).taskCount}'
                   ' Tasks completed',
                   style: TextStyle(
-                    color: lightThemeColor,
+                    color: themeColor1,
                     fontSize: 21.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -103,7 +103,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 horizontal: 20.0,
               ),
               decoration: BoxDecoration(
-                color: lightThemeColor,
+                color: themeColor1,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
                   topRight: Radius.circular(20.0),
@@ -115,10 +115,10 @@ class _TasksScreenState extends State<TasksScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: darkThemeColor,
+        backgroundColor: themeColor2,
         child: Icon(
           Icons.add,
-          color: lightThemeColor,
+          color: themeColor1,
         ),
         onPressed: () {
           showModalBottomSheet(

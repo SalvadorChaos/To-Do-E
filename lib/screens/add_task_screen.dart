@@ -86,7 +86,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     listen: false,
                   ).addTask(newTask);
                   Navigator.pop(context);
-                  //addTaskCallback(newTask);
                 },
               ),
             ),
