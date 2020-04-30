@@ -84,7 +84,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   Provider.of<TaskData>(
                     context,
                     listen: false,
-                  ).addTask(newTask);
+                  ).addTask(newTask ?? '');
                   Navigator.pop(context);
                 },
               ),
